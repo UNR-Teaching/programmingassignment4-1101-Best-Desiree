@@ -57,14 +57,20 @@ void subtractDays(int month,int day,int numberOfDays,int* monthPtr,int* dayPtr)
 	
 	printf("Enter a number of days between 1 and 30: ");
 	scanf(" %d", &numberOfDays);
+	day -= numberOfDays;
 	if(numberOfDays > day)
 	{
-		*monthPtr = month -1;
-		*dayPtr = 30 - (numberOfDays - day);
+		month--;
+		if(month == 0)
+		{
+			month = 12;
+		}
+		day += 30;
+	
 	}
 	
 		*monthPtr = month;
-		*dayPtr = day - numberOfDays;
+		*dayPtr = day;
 	
 	printf("Subtracting\n");
 }
@@ -78,11 +84,12 @@ void addDays(int month,int day,int numberOfDays,int* monthPtr,int* dayPtr)
 	
 	if(numberOfDays > day)
 	{
-		*monthPtr = month + 1;
-		if(numberOfDays + day > 30)
+		month ++;
+		if(month == 13)
 		{
-			*dayPtr = (numberOfDays + day) - 30;
+			month = 1;
 		}
+			day -= 30;
 	}
 	
 		*monthPtr = month;
